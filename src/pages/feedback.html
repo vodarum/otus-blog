@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Feedback | OTUS Blog</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+
+  <body>
+    <%= require('html-loader!../components/header.html').default %>
+
+    <div class="content">
+      <main class="main">
+        <form class="form">
+          <div class="form__item">
+            <label for="email" class="form__label">Email</label>
+            <input type="text" class="form__input" id="email" />
+          </div>
+          <div class="form__item">
+            <label for="message" class="form__label">Message</label>
+            <textarea
+              name="message"
+              id="message"
+              rows="7"
+              class="form__input"
+            ></textarea>
+          </div>
+          <div class="form__item">
+            <button type="submit" class="form__btn">Subscribe</button>
+          </div>
+        </form>
+      </main>
+
+      <%= require('html-loader!../components/aside.html').default %>
+    </div>
+
+    <%= require('html-loader!../components/footer.html').default %>
+  </body>
+</html>

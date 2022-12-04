@@ -1,0 +1,19 @@
+.header {
+  grid-area: header;
+  display: grid;
+  grid-template-areas: "h-logo h-nav";
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: rgb(200 200 200);
+
+  &__item {
+    &.logo {
+      grid-area: h-logo;
+    }
+
+    &.nav {
+      grid-area: h-nav;
+    }
+  }
+}
