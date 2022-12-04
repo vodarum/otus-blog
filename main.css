@@ -1,0 +1,287 @@
+:root {
+  background-image: url(https://monitoring.host/pixel.png?%3Aroot);
+  font-size: 16px;
+}
+*,
+:after,
+:before {
+  background-image: url(https://monitoring.host/pixel.png?*%2C%0A*%3A%3Abefore%2C%0A*%3A%3Aafter);
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+a {
+  background-image: url(https://monitoring.host/pixel.png?a);
+  color: #000;
+  text-decoration: none;
+}
+a:visited {
+  background-image: url(https://monitoring.host/pixel.png?%26%3Avisited);
+  color: #000;
+}
+a:hover {
+  background-image: url(https://monitoring.host/pixel.png?%26%3Ahover);
+  color: #dd0000;
+}
+body {
+  background-image: url(https://monitoring.host/pixel.png?body);
+  display: grid;
+  grid-template-areas: "header" "content" "footer";
+  grid-template-rows: max-content auto max-content;
+  min-height: 100vh;
+  min-width: 320px;
+}
+@media (min-width: 768px) {
+  body {
+    grid-template-columns: minmax(auto, 720px);
+    justify-content: center;
+  }
+}
+@media (min-width: 992px) {
+  body {
+    grid-template-columns: minmax(auto, 960px);
+  }
+}
+@media (min-width: 1200px) {
+  body {
+    grid-template-columns: minmax(auto, 1140px);
+  }
+}
+@media (min-width: 1440px) {
+  body {
+    grid-template-columns: minmax(auto, 1320px);
+  }
+}
+.form {
+  background-image: url(https://monitoring.host/pixel.png?.form);
+  max-width: 360px;
+}
+.form__item {
+  background-image: url(https://monitoring.host/pixel.png?%26__item);
+}
+.form__item:not(:last-child) {
+  background-image: url("https://monitoring.host/pixel.png?%26%3Anot(%3Alast-child)");
+  margin-bottom: 0.7rem;
+}
+.form__input {
+  background-image: url(https://monitoring.host/pixel.png?%26__input);
+  display: block;
+  margin-top: 0.3rem;
+  width: 100%;
+}
+.form__btn,
+.form__input {
+  padding: 0.2rem 0.3rem;
+}
+.form__btn {
+  background-image: url(https://monitoring.host/pixel.png?%26__btn);
+}
+.nav {
+  background-image: url(https://monitoring.host/pixel.png?.nav);
+}
+.nav__list {
+  background-image: url(https://monitoring.host/pixel.png?%26__list);
+  display: flex;
+  gap: 0.5rem;
+  list-style-type: none;
+}
+.header {
+  align-items: center;
+  background-image: url(https://monitoring.host/pixel.png?.header);
+  background: #c8c8c8;
+  display: grid;
+  grid-area: header;
+  grid-template-areas: "h-logo h-nav";
+  justify-content: space-between;
+  padding: 1rem;
+}
+.header__item {
+  background-image: url(https://monitoring.host/pixel.png?%26__item);
+}
+.header__item.logo {
+  background-image: url(https://monitoring.host/pixel.png?%26.logo);
+  grid-area: h-logo;
+}
+.header__item.nav {
+  background-image: url(https://monitoring.host/pixel.png?%26.nav);
+  grid-area: h-nav;
+}
+.logo {
+  background-image: url(https://monitoring.host/pixel.png?.logo);
+}
+.logo__img {
+  background-image: url(https://monitoring.host/pixel.png?%26__img);
+  max-width: 80px;
+}
+.content {
+  background-image: url(https://monitoring.host/pixel.png?.content);
+  display: grid;
+  grid-area: content;
+  grid-template-areas: "main" "aside";
+  grid-template-rows: auto max-content;
+}
+@media (min-width: 992px) {
+  .content {
+    grid-template-areas: "main aside";
+    grid-template-columns: auto 22%;
+    grid-template-rows: auto;
+  }
+}
+.main {
+  background-color: #cbffcb;
+  background-image: url(https://monitoring.host/pixel.png?.main);
+  grid-area: main;
+  height: 100%;
+  padding: 1rem;
+}
+.aside {
+  background-color: #ffffbd;
+  background-image: url(https://monitoring.host/pixel.png?.aside);
+  grid-area: aside;
+  padding: 1rem;
+}
+.aside__section {
+  background-image: url(https://monitoring.host/pixel.png?%26__section);
+}
+.aside__section:not(:last-child) {
+  background-image: url("https://monitoring.host/pixel.png?%26%3Anot(%3Alast-child)");
+  margin-bottom: 1rem;
+}
+.article {
+  background-image: url(https://monitoring.host/pixel.png?.article);
+  position: relative;
+}
+.article__title {
+  background-image: url(https://monitoring.host/pixel.png?%26__title);
+  margin-bottom: 0.5rem;
+}
+.article__link {
+  background-image: url(https://monitoring.host/pixel.png?%26__link);
+}
+.article__link:before {
+  background-image: url(https://monitoring.host/pixel.png?%26%3A%3Abefore);
+  bottom: 0;
+  content: "";
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.article:not(:last-child) {
+  background-image: url("https://monitoring.host/pixel.png?%26%3Anot(%3Alast-child)");
+  margin-bottom: 1rem;
+}
+.section {
+  background-image: url(https://monitoring.host/pixel.png?.section);
+}
+.section__title {
+  background-image: url(https://monitoring.host/pixel.png?%26__title);
+  margin-bottom: 0.5rem;
+}
+.footer {
+  grid-gap: 1rem 1%;
+  align-content: center;
+  background-image: url(https://monitoring.host/pixel.png?.footer);
+  background: #efadad;
+  display: grid;
+  gap: 1rem 1%;
+  grid-area: footer;
+  grid-template-areas: "f-subscribe f-subscribe" "f-nav-1 f-nav-2" "f-social f-social";
+  padding: 1rem;
+}
+@media (min-width: 768px) {
+  .footer {
+    grid-template-areas: "f-nav-1 f-social f-nav-2 f-subscribe";
+  }
+}
+.footer__item {
+  background-image: url(https://monitoring.host/pixel.png?%26__item);
+}
+.footer__item.subscribe {
+  background-image: url(https://monitoring.host/pixel.png?%26.subscribe);
+  grid-area: f-subscribe;
+}
+.footer__item.social {
+  background-image: url(https://monitoring.host/pixel.png?%26.social);
+  grid-area: f-social;
+  justify-self: center;
+}
+.footer__item.nav {
+  background-image: url(https://monitoring.host/pixel.png?%26.nav);
+}
+.footer__item.nav_1 {
+  background-image: url(https://monitoring.host/pixel.png?%26_1);
+  grid-area: f-nav-1;
+}
+.footer__item.nav_2 {
+  background-image: url(https://monitoring.host/pixel.png?%26_2);
+  grid-area: f-nav-2;
+}
+.footer__item .nav__list {
+  background-image: url(https://monitoring.host/pixel.png?%26%20.nav__list);
+  flex-direction: column;
+}
+.social {
+  align-items: center;
+  background-image: url(https://monitoring.host/pixel.png?.social);
+  display: flex;
+  gap: 0.5rem;
+  justify-content: space-around;
+  list-style-type: none;
+}
+.social__link {
+  background-image: url(https://monitoring.host/pixel.png?%26__link);
+  display: inline-block;
+  height: 40px;
+  position: relative;
+  width: 40px;
+}
+.social__link:before {
+  background-image: url(https://monitoring.host/pixel.png?%26%3A%3Abefore);
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  bottom: 0;
+  content: "";
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.social__link_github {
+  background-image: url(https://monitoring.host/pixel.png?%26_github);
+}
+.social__link_github:before {
+  background-image: url(https://monitoring.host/pixel.png?%26%3A%3Abefore);
+  background-image: url(images/github.png);
+}
+.social__link_telegram {
+  background-image: url(https://monitoring.host/pixel.png?%26_telegram);
+}
+.social__link_telegram:before {
+  background-image: url(https://monitoring.host/pixel.png?%26%3A%3Abefore);
+  background-image: url(images/telegram.png);
+}
+.social__link_vk {
+  background-image: url(https://monitoring.host/pixel.png?%26_vk);
+}
+.social__link_vk:before {
+  background-image: url(https://monitoring.host/pixel.png?%26%3A%3Abefore);
+  background-image: url(images/vk.png);
+}
+.subscribe {
+  align-items: center;
+  background-image: url(https://monitoring.host/pixel.png?.subscribe);
+  display: flex;
+}
+.subscribe-form {
+  background-image: url(https://monitoring.host/pixel.png?%26-form);
+}
+.subscribe-form__btn,
+.subscribe-form__input {
+  background-image: url(https://monitoring.host/pixel.png?%26__input%2C%0A%20%20%20%20%26__btn);
+  padding: 0.2rem 0.3rem;
+}
+
+
+/*# sourceMappingURL=main.css.map*/
