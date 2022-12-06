@@ -18,5 +18,6 @@ module.exports = {
         ignoreComments: true,
       },
     ],
+    "prefer-destructuring": ["error", { array: false }],
   },
 };
