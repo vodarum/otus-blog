@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>OTUS Blog</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+
+  <body>
+    <%= require('html-loader!../components/header.html').default %>
+
+    <div class="content">
+      <main class="main">
+        <h1>Main Page of OTUS Blog</h1>
+      </main>
+
+      <%= require('html-loader!../components/aside.html').default %>
+    </div>
+
+    <%= require('html-loader!../components/footer.html').default %>
+  </body>
+</html>

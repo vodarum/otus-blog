@@ -1,0 +1,41 @@
+.footer {
+  grid-area: footer;
+  display: grid;
+  grid-template-areas:
+    "f-subscribe f-subscribe"
+    "f-nav-1 f-nav-2"
+    "f-social f-social";
+  align-content: center;
+  gap: 1rem 1%;
+  padding: 1rem;
+  background: rgb(239 173 173);
+
+  @media (min-width: 768px) {
+    grid-template-areas: "f-nav-1 f-social f-nav-2 f-subscribe";
+  }
+
+  &__item {
+    &.subscribe {
+      grid-area: f-subscribe;
+    }
+
+    &.social {
+      grid-area: f-social;
+      justify-self: center;
+    }
+
+    &.nav {
+      &_1 {
+        grid-area: f-nav-1;
+      }
+
+      &_2 {
+        grid-area: f-nav-2;
+      }
+    }
+
+    & .nav__list {
+      flex-direction: column;
+    }
+  }
+}
