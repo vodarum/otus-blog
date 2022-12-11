@@ -1,0 +1,109 @@
+.swiper {
+  background-image: url(https://monitoring.host/pixel.png?.swiper);
+  overflow: hidden;
+  position: relative;
+}
+.swiper__slide {
+  background-image: url(https://monitoring.host/pixel.png?%26__slide);
+  display: none;
+  min-height: 200px;
+  width: 100%;
+}
+.swiper__slide.active,
+.swiper__slide_next,
+.swiper__slide_prev {
+  background-image: url(https://monitoring.host/pixel.png?%26.active%2C%0A%20%20%20%20%26_prev%2C%0A%20%20%20%20%26_next);
+  display: block;
+}
+.swiper__slide_next,
+.swiper__slide_prev {
+  background-image: url(https://monitoring.host/pixel.png?%26_prev%2C%0A%20%20%20%20%26_next);
+  position: absolute;
+  top: 0;
+}
+.swiper__slide_prev {
+  background-image: url(https://monitoring.host/pixel.png?%26_prev);
+  transform: translateX(-100%);
+}
+.swiper__slide_prev.swiper__slide_right {
+  background-image: url(https://monitoring.host/pixel.png?%26.swiper__slide_right);
+  transform: translateX(0);
+}
+.swiper__slide_next {
+  background-image: url(https://monitoring.host/pixel.png?%26_next);
+  transform: translateX(100%);
+}
+.swiper__slide_next.swiper__slide_left {
+  background-image: url(https://monitoring.host/pixel.png?%26.swiper__slide_left);
+  transform: translateX(0);
+}
+.swiper__slide_left {
+  background-image: url(https://monitoring.host/pixel.png?%26_left);
+}
+.swiper__slide_left.active {
+  background-image: url(https://monitoring.host/pixel.png?%26.active);
+  transform: translateX(-100%);
+}
+.swiper__slide_right {
+  background-image: url(https://monitoring.host/pixel.png?%26_right);
+}
+.swiper__slide_right.active {
+  background-image: url(https://monitoring.host/pixel.png?%26.active);
+  transform: translateX(100%);
+}
+.swiper__button {
+  background-color: transparent;
+  background-image: url(https://monitoring.host/pixel.png?%26__button);
+  border: 0;
+  cursor: pointer;
+  height: 50px;
+  opacity: 0.5;
+  position: absolute;
+  top: 50%;
+  width: 30px;
+}
+.swiper__button:after,
+.swiper__button:before {
+  background-color: #646464;
+  background-image: url(https://monitoring.host/pixel.png?%26%3A%3Abefore%2C%0A%20%20%20%20%26%3A%3Aafter);
+  content: "";
+  display: inline-block;
+  height: 3px;
+  position: absolute;
+  width: 100%;
+}
+.swiper__button_prev {
+  background-image: url(https://monitoring.host/pixel.png?%26_prev);
+  left: 0.5rem;
+}
+.swiper__button_prev:before {
+  background-image: url(https://monitoring.host/pixel.png?%26%3A%3Abefore);
+  right: -2px;
+  transform: rotate(315deg);
+  transform-origin: bottom left;
+}
+.swiper__button_prev:after {
+  background-image: url(https://monitoring.host/pixel.png?%26%3A%3Aafter);
+  right: -2px;
+  transform: rotate(-315deg);
+  transform-origin: top left;
+}
+.swiper__button_next {
+  background-image: url(https://monitoring.host/pixel.png?%26_next);
+  right: 0.5rem;
+}
+.swiper__button_next:before {
+  background-image: url(https://monitoring.host/pixel.png?%26%3A%3Abefore);
+  left: -2px;
+  transform: rotate(45deg);
+  transform-origin: bottom right;
+}
+.swiper__button_next:after {
+  background-image: url(https://monitoring.host/pixel.png?%26%3A%3Aafter);
+  left: -2px;
+  transform: rotate(-45deg);
+  transform-origin: top right;
+}
+
+
+/*# sourceMappingURL=swiper-init.css.map*/
