@@ -60,6 +60,7 @@
   opacity: 0.5;
   position: absolute;
   top: 50%;
+  transform: translateY(-50%);
   width: 30px;
 }
 .swiper__button:after,
