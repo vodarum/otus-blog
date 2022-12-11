@@ -2,25 +2,18 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const fs = require("fs");
 
-const pages = fs.readdirSync("src/pages/");
+const pages = fs.readdirSync("src/pages/").map((p) => p.replace(/\.html/, ""));
 
 module.exports = {
-  entry: "./src/js/index.js",
+  entry: {
+    index: "./src/js/index.js",
+    "swiper-init": "./src/js/swiper-init.js",
+  },
   output: {
-    filename: "main.js",
+    filename: "[name].js",
     clean: true,
     assetModuleFilename: "images/[name][ext]",
   },
-  plugins: [
-    ...pages.map(
-      (p) =>
-        new HtmlWebpackPlugin({
-          filename: p,
-          template: `src/pages/${p}`,
-        })
-    ),
-    new MiniCssExtractPlugin(),
-  ],
   module: {
     rules: [
       {
@@ -33,4 +26,16 @@ module.exports = {
       },
     ],
   },
+  plugins: [
+    ...pages.map(
+      (p) =>
+        new HtmlWebpackPlugin({
+          filename: `${p}.html`,
+          template: `src/pages/${p}.html`,
+          inject: true,
+          chunks: p === "index" ? ["index", "swiper-init"] : ["index"],
+        })
+    ),
+    new MiniCssExtractPlugin(),
+  ],
 };
