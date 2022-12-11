@@ -56,14 +56,15 @@ function Swiper(swiperContainer, options = null) {
       }
 
       const lastSlideIdx = this.swiperSlides.length - 1;
+      const idx = [...this.swiperSlides].findIndex((ss) => ss === s);
 
       if (this.btnPrevPressed) {
-        this.nextActiveSlideIdx = i === 0 ? lastSlideIdx : i - 1;
+        this.nextActiveSlideIdx = idx === 0 ? lastSlideIdx : idx - 1;
         this.swiperSlides[this.nextActiveSlideIdx].classList.add(
           "swiper__slide_right"
         );
       } else if (this.btnNextPressed) {
-        this.nextActiveSlideIdx = i === lastSlideIdx ? 0 : i + 1;
+        this.nextActiveSlideIdx = idx === lastSlideIdx ? 0 : idx + 1;
         this.swiperSlides[this.nextActiveSlideIdx].classList.add(
           "swiper__slide_left"
         );
