@@ -1,4 +1,89 @@
 /* eslint no-restricted-syntax: ["off", "ForOfStatement"] */
+/* eslint no-underscore-dangle: ["error", { "allow": ["_ontransitionstart", "_ontransitionend", "_parseOptions", "_setAutoSlideTimeoutID"] }] */
+
+function _ontransitionstart(target, context) {
+  if (!target.classList.contains("active")) {
+    return;
+  }
+
+  const lastSlideIdx = context.swiperSlides.length - 1;
+  const idx = [...context.swiperSlides].findIndex((slide) => slide === target);
+
+  if (context.btnPrevPressed) {
+    context.nextActiveSlideIdx = idx === 0 ? lastSlideIdx : idx - 1;
+    context.swiperSlides[context.nextActiveSlideIdx].classList.add(
+      "swiper__slide_right"
+    );
+
+    return;
+  }
+
+  if (context.btnNextPressed) {
+    context.nextActiveSlideIdx = idx === lastSlideIdx ? 0 : idx + 1;
+    context.swiperSlides[context.nextActiveSlideIdx].classList.add(
+      "swiper__slide_left"
+    );
+  }
+}
+
+function _ontransitionend(target, context) {
+  if (!target.classList.contains("active")) {
+    return;
+  }
+
+  if (context.btnPrevPressed) {
+    target.classList.remove("active", "swiper__slide_right");
+    context.swiperSlides[context.nextActiveSlideIdx].classList.add("active");
+    context.swiperSlides[context.nextActiveSlideIdx].classList.remove(
+      "swiper__slide_prev",
+      "swiper__slide_right"
+    );
+
+    context.btnPrevPressed = false;
+    return;
+  }
+
+  if (context.btnNextPressed) {
+    target.classList.remove("active", "swiper__slide_left");
+    context.swiperSlides[context.nextActiveSlideIdx].classList.add("active");
+    context.swiperSlides[context.nextActiveSlideIdx].classList.remove(
+      "swiper__slide_next",
+      "swiper__slide_left"
+    );
+
+    context.btnNextPressed = false;
+  }
+}
+
+function _parseOptions(options) {
+  return {
+    auto: options?.auto ?? false,
+    interval:
+      options?.interval && typeof options.interval === "number"
+        ? options.interval
+        : null,
+    reverse: options?.reverse ?? false,
+    speed:
+      options?.speed && typeof options.speed === "number" ? options.speed : 500,
+  };
+}
+
+function _setAutoSlideTimeoutID(context) {
+  if (!context.options.auto || !context.options.interval) {
+    return;
+  }
+
+  clearTimeout(context.autoSlideTimeoutID);
+
+  context.autoSlideTimeoutID = setTimeout(() => {
+    if (context.options.reverse) {
+      context.btnPrev.dispatchEvent(new Event("click"));
+    } else {
+      context.btnNext.dispatchEvent(new Event("click"));
+    }
+  }, context.options.interval);
+}
+
 function Swiper(swiperContainer, options = null) {
   if (typeof swiperContainer === "string") {
     const elements = document.querySelectorAll(swiperContainer);
@@ -30,86 +115,29 @@ function Swiper(swiperContainer, options = null) {
   this.btnPrevPressed = false;
   this.btnNextPressed = false;
 
-  this.options = {
-    auto: options?.auto ?? false,
-    interval:
-      options?.interval && typeof options.interval === "number"
-        ? options.interval
-        : null,
-    reverse: options?.reverse ?? false,
-    speed:
-      options?.speed && typeof options.speed === "number" ? options.speed : 500,
-  };
+  this.options = _parseOptions(options);
 
   this.nextActiveSlideIdx = null;
 
-  [...this.swiperSlides].forEach((s, i) => {
+  [...this.swiperSlides].forEach((slide, i) => {
     if (i === 0) {
-      s.classList.add("active");
+      slide.classList.add("active");
     }
 
-    s.style.transitionDuration = `${this.options.speed}ms`; // eslint-disable-line no-param-reassign
+    slide.style.transitionDuration = `${this.options.speed}ms`; // eslint-disable-line no-param-reassign
 
-    s.addEventListener("transitionstart", () => {
-      if (!s.classList.contains("active")) {
-        return;
-      }
-
-      const lastSlideIdx = this.swiperSlides.length - 1;
-      const idx = [...this.swiperSlides].findIndex((ss) => ss === s);
-
-      if (this.btnPrevPressed) {
-        this.nextActiveSlideIdx = idx === 0 ? lastSlideIdx : idx - 1;
-        this.swiperSlides[this.nextActiveSlideIdx].classList.add(
-          "swiper__slide_right"
-        );
-      } else if (this.btnNextPressed) {
-        this.nextActiveSlideIdx = idx === lastSlideIdx ? 0 : idx + 1;
-        this.swiperSlides[this.nextActiveSlideIdx].classList.add(
-          "swiper__slide_left"
-        );
-      }
-    });
-
-    s.addEventListener("transitionend", () => {
-      if (!s.classList.contains("active")) {
-        return;
-      }
-
-      if (this.btnPrevPressed) {
-        s.classList.remove("active", "swiper__slide_right");
-        this.swiperSlides[this.nextActiveSlideIdx].classList.add("active");
-        this.swiperSlides[this.nextActiveSlideIdx].classList.remove(
-          "swiper__slide_prev",
-          "swiper__slide_right"
-        );
-
-        this.btnPrevPressed = false;
-      } else if (this.btnNextPressed) {
-        s.classList.remove("active", "swiper__slide_left");
-        this.swiperSlides[this.nextActiveSlideIdx].classList.add("active");
-        this.swiperSlides[this.nextActiveSlideIdx].classList.remove(
-          "swiper__slide_next",
-          "swiper__slide_left"
-        );
-
-        this.btnNextPressed = false;
-      }
-    });
+    slide.addEventListener("transitionstart", () =>
+      _ontransitionstart(slide, this)
+    );
+    slide.addEventListener("transitionend", () =>
+      _ontransitionend(slide, this)
+    );
   });
 
   this.btnPrev.onclick = this.slidePrev.bind(this);
   this.btnNext.onclick = this.slideNext.bind(this);
 
-  if (this.options.auto && this.options.interval) {
-    setInterval(() => {
-      if (this.options.reverse) {
-        this.btnPrev.dispatchEvent(new Event("click"));
-      } else {
-        this.btnNext.dispatchEvent(new Event("click"));
-      }
-    }, this.options.interval);
-  }
+  _setAutoSlideTimeoutID(this);
 }
 
 Swiper.prototype.slidePrev = function slidePrev() {
@@ -131,6 +159,8 @@ Swiper.prototype.slidePrev = function slidePrev() {
 
       this.swiperSlides[showedSlideIdx].classList.add("swiper__slide_prev");
       s.classList.add("swiper__slide_right");
+
+      _setAutoSlideTimeoutID(this);
 
       break;
     }
@@ -156,6 +186,8 @@ Swiper.prototype.slideNext = function slideNext() {
 
       this.swiperSlides[showedSlideIdx].classList.add("swiper__slide_next");
       s.classList.add("swiper__slide_left");
+
+      _setAutoSlideTimeoutID(this);
 
       break;
     }
