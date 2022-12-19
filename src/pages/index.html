@@ -14,6 +14,40 @@
     <div class="content">
       <main class="main">
         <h1>Main Page of OTUS Blog</h1>
+
+        <div class="swiper" style="margin-top: 30px">
+          <div class="swiper__wrapper">
+            <div
+              class="swiper__slide"
+              style="background-color: rgb(180, 128, 229)"
+            >
+              Slide 1
+            </div>
+            <div
+              class="swiper__slide"
+              style="background-color: rgb(237, 159, 237)"
+            >
+              Slide 2
+            </div>
+            <div
+              class="swiper__slide"
+              style="background-color: rgb(152, 231, 222)"
+            >
+              Slide 3
+            </div>
+          </div>
+
+          <button
+            type="button"
+            class="swiper__button swiper__button_prev"
+            data-slide="prev"
+          ></button>
+          <button
+            type="button"
+            class="swiper__button swiper__button_next"
+            data-slide="next"
+          ></button>
+        </div>
       </main>
 
       <%= require('html-loader!../components/aside.html').default %>
